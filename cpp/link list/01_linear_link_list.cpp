@@ -58,23 +58,22 @@ void traverse()
     cout << endl;
 }
 
-void reverse_traverse(struct node current)
+void reverse_traverse()
 {
-    if (head == NULL)
+    // code here
+    struct node *temp;
+    struct node *previous = NULL;
+    while (head != NULL)
     {
-        return;
+        temp = head->next;
+        head->next = previous;
+        previous = head;
+        head = temp;
     }
-    else
-    {
-        if (pointer->next == NULL){
-            return;
-        }
-        
-cout << "3"<< endl;
-traverse();
+    head = previous;
 
-        return;
-    }
+    traverse();
+    reverse_traverse();
 }
 
 void insert_at_begning()
