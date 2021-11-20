@@ -22,6 +22,7 @@ void create_link_list()
     struct node *ptr = (struct node *)malloc(sizeof(struct node *));
     if (ptr == NULL)
     {
+        cout << "Node not allocated" << endl;
         return;
     }
     else
@@ -39,7 +40,6 @@ void create_link_list()
             struct node *ptr = (struct node *)malloc(sizeof(struct node *));
             cout << "data : ";
             cin >> ptr->data;
-
             pointer->next = ptr;
             ptr->next = NULL;
 
@@ -58,10 +58,10 @@ void traverse()
     cout << endl;
 }
 
+// reverse traverse not completed yet
 void reverse_traverse()
 {
     // code here
-    struct node *temp;
     struct node *previous = NULL;
     while (head != NULL)
     {
@@ -73,7 +73,6 @@ void reverse_traverse()
     head = previous;
 
     traverse();
-    reverse_traverse();
 }
 
 void insert_at_begning()
@@ -85,6 +84,7 @@ void insert_at_begning()
 
     if (pointer == NULL)
     {
+        cout << "node does not inserted" << endl;
         return;
     }
     else
@@ -152,7 +152,6 @@ void insert_at_position()
 
 void deletion_at_begning()
 {
-
     if (head == NULL)
     {
         return;
@@ -220,6 +219,7 @@ void search()
     int position = 1;
     pointer = head;
     int number;
+    cout << "enter data to search : ";
     cin >> number;
 
     if (pointer == NULL)
@@ -228,21 +228,69 @@ void search()
     }
     else
     {
-        while (pointer->next != NULL)
+        int key = 0;
+        while (pointer != NULL)
         {
             if (pointer->data == number)
             {
                 cout << number << " is present at " << position << " node" << endl;
-                return;
+                key = 1;
+                break;
             }
+            else
+            {
+                key = 0;
+            }
+            position++;
+            pointer = pointer->next;
         }
-        cout << number << " is not present" << endl;
+        if (key == 0)
+        {
+            cout << number << " is not present" << endl;
+        }
         return;
     }
 }
 
+void sort()
+{
+    struct node *mp;
+    int temp;
+    pointer = head;
+    while (pointer->next != NULL)
+    {
+        mp = pointer->next;
+        while (mp != NULL)
+        {
+            if (mp->data < pointer->data)
+            {
+                temp = pointer->data;
+                pointer->data = mp->data;
+                mp->data = temp;
+            }
+            mp = mp->next;
+        }
+        pointer = pointer->next;
+    }
+    cout << "list shorted" << endl;
+}
+
 void cases()
 {
+    cout << "enter number to perform task in list " << endl
+         << "1.create node" << endl
+         << "2.traverse the list" << endl
+         << "3.reverse traverse the list" << endl
+         << "4.insertion at begning" << endl
+         << "5.insertion at end" << endl
+         << "6.insertion at any position" << endl
+         << "7.deletion at begning" << endl
+         << "8.deletion at end" << endl
+         << "9.deletion at any position" << endl
+         << "10.search at any number" << endl
+         << "11.shorting of list" << endl
+         << "12.exit" << endl;
+
     int input;
     cout << "enter input : ";
     cin >> input;
@@ -280,6 +328,9 @@ void cases()
         search();
         break;
     case 11:
+        sort();
+        break;
+    case 12:
         exit(0);
         break;
     default:
@@ -291,18 +342,5 @@ void cases()
 
 int main()
 {
-    cout << "enter number to perform task in list " << endl
-         << "1.create node" << endl
-         << "2.traverse the list" << endl
-         << "3.reverse traverse the list" << endl
-         << "4.insertion at begning" << endl
-         << "5.insertion at end" << endl
-         << "6.insertion at any position" << endl
-         << "7.deletion at begning" << endl
-         << "8.deletion at end" << endl
-         << "9.deletion at any position" << endl
-         << "10.search at any number" << endl
-         << "11.exit" << endl;
-
     cases();
 }
