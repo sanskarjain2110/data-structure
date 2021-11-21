@@ -23,6 +23,7 @@ void create_link_list()
     struct node *ptr = (struct node *)malloc(sizeof(struct node *));
     if (ptr == NULL)
     {
+        cout << "Node not allocated" << endl;
         return;
     }
     else

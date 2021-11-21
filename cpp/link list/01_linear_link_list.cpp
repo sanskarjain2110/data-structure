@@ -40,6 +40,7 @@ void create_link_list()
             struct node *ptr = (struct node *)malloc(sizeof(struct node *));
             cout << "data : ";
             cin >> ptr->data;
+            
             pointer->next = ptr;
             ptr->next = NULL;
 
@@ -53,15 +54,14 @@ void traverse()
     pointer = head;
     for (; pointer != NULL; pointer = pointer->next)
     {
-        cout << pointer->data << "--> ";
+        cout << pointer->data << " ";
     }
     cout << endl;
 }
 
-// reverse traverse not completed yet
 void reverse_traverse()
 {
-    // code here
+    temp = NULL;
     struct node *previous = NULL;
     while (head != NULL)
     {
@@ -277,20 +277,6 @@ void sort()
 
 void cases()
 {
-    cout << "enter number to perform task in list " << endl
-         << "1.create node" << endl
-         << "2.traverse the list" << endl
-         << "3.reverse traverse the list" << endl
-         << "4.insertion at begning" << endl
-         << "5.insertion at end" << endl
-         << "6.insertion at any position" << endl
-         << "7.deletion at begning" << endl
-         << "8.deletion at end" << endl
-         << "9.deletion at any position" << endl
-         << "10.search at any number" << endl
-         << "11.shorting of list" << endl
-         << "12.exit" << endl;
-
     int input;
     cout << "enter input : ";
     cin >> input;
@@ -342,5 +328,19 @@ void cases()
 
 int main()
 {
+    cout << "enter number to perform task in list " << endl
+         << "1.create node" << endl
+         << "2.traverse the list" << endl
+         << "3.reverse traverse the list" << endl
+         << "4.insertion at begning" << endl
+         << "5.insertion at end" << endl
+         << "6.insertion at any position" << endl
+         << "7.deletion at begning" << endl
+         << "8.deletion at end" << endl
+         << "9.deletion at any position" << endl
+         << "10.search at any number" << endl
+         << "11.shorting of list" << endl
+         << "12.exit" << endl;
+
     cases();
 }
