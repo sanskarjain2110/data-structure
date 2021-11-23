@@ -37,6 +37,7 @@ void create_link_list()
         ptr->prev = NULL;
 
         pointer = head;
+
         for (int i = 2; i <= nodeNum; i++)
         {
             struct node *ptr = (struct node *)malloc(sizeof(struct node *));
@@ -49,6 +50,7 @@ void create_link_list()
 
             pointer = pointer->next;
         }
+        return;
     }
 }
 
@@ -57,7 +59,7 @@ void traverse()
     pointer = head;
     for (; pointer != NULL; pointer = pointer->next)
     {
-        cout << pointer->data << "--> ";
+        cout << pointer->data << " ";
     }
     cout << endl;
 }
@@ -69,12 +71,7 @@ void reverse_traverse()
     {
         pointer = pointer->next;
     }
-
-    for (; pointer != NULL; pointer = pointer->prev)
-    {
-        cout << pointer->data << "--> ";
-    }
-    cout << endl;
+    traverse();
 }
 
 void insert_at_begning()
@@ -263,6 +260,7 @@ void cases()
         traverse();
         break;
     case 3:
+        reverse_traverse();
         break;
     case 4:
         insert_at_begning();
@@ -290,6 +288,7 @@ void cases()
     default:
         cout << "invalid input!!!" << endl;
         cases();
+        break;
     }
     cases();
     return;
@@ -301,14 +300,17 @@ int main()
          << "1.create node" << endl
          << "2.traverse the list" << endl
          << "3.reverse traverse the list" << endl
-         << "3.insertion at begning" << endl
-         << "4.insertion at end" << endl
-         << "5.insertion at any position" << endl
-         << "6.deletion at begning" << endl
-         << "7.deletion at end" << endl
-         << "8.deletion at any position" << endl
-         << "9.search at any number" << endl
-         << "10.exit" << endl;
+         << "4.insertion at begning" << endl
+         << "5.insertion at end" << endl
+         << "6.insertion at any position" << endl
+         << "7.deletion at begning" << endl
+         << "8.deletion at end" << endl
+         << "9.deletion at any position" << endl
+         << "10.search at any number" << endl
+         << "11.exit" << endl;
 
     cases();
+
+    // create_link_list();
+    // cout << pointer->next->prev->data;
 }

@@ -110,6 +110,7 @@ void insert_at_end()
             pointer = pointer->next;
         }
         struct node *ptr = (struct node *)malloc(sizeof(struct node *));
+        cout << "data : ";
         cin >> ptr->data;
         pointer->next = ptr;
         ptr->next = NULL;
@@ -117,6 +118,7 @@ void insert_at_end()
     return;
 }
 
+//error
 void insert_at_position()
 {
     struct node *ptr = (struct node *)malloc(sizeof(struct node *));
@@ -150,6 +152,7 @@ void insert_at_position()
     }
 }
 
+//error
 void deletion_at_begning()
 {
     if (head == NULL)
@@ -252,6 +255,7 @@ void search()
     }
 }
 
+// sorting through the bubble sort 
 void sort()
 {
     struct node *mp;
