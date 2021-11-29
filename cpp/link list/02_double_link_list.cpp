@@ -10,17 +10,17 @@ struct node
     struct node *next;
     struct node *prev;
 };
-struct node *head, *pointer = head, *temp;
+struct node *head = NULL;
 
 void create_link_list()
 {
-    pointer = head;
     int nodeNum;
-
     cout << "enter number of nodes to create : ";
     cin >> nodeNum;
 
-    struct node *ptr = (struct node *)malloc(sizeof(struct node *));
+    struct node *ptr = new struct node();
+    cout << "data : ";
+    cin >> ptr->data;
     if (ptr == NULL)
     {
         cout << "Node not allocated" << endl;
@@ -28,35 +28,40 @@ void create_link_list()
     }
     else
     {
-
-        cout << "data : ";
-        cin >> ptr->data;
-
         head = ptr;
         ptr->next = NULL;
         ptr->prev = NULL;
+        struct node *pointer = head;
 
-        pointer = head;
-
-        for (int i = 2; i <= nodeNum; i++)
+        while (nodeNum > 1)
         {
-            struct node *ptr = (struct node *)malloc(sizeof(struct node *));
+            struct node *ptr = new struct node();
             cout << "data : ";
             cin >> ptr->data;
+            if (ptr == NULL)
+            {
+                cout << "Node not allocated" << endl;
+                return;
+            }
+            else
+            {
 
-            pointer->next = ptr;
-            ptr->prev = pointer;
-            ptr->next = NULL;
+                pointer->next = ptr;
+                ptr->prev = pointer;
+                ptr->next = NULL;
 
-            pointer = pointer->next;
+                pointer = ptr;
+                nodeNum--;
+            }
         }
+        cout << "list created" << endl;
         return;
     }
 }
 
 void traverse()
 {
-    pointer = head;
+    struct node *pointer = head;
     for (; pointer != NULL; pointer = pointer->next)
     {
         cout << pointer->data << " ";
@@ -66,7 +71,7 @@ void traverse()
 
 void reverse_traverse()
 {
-    pointer = head;
+    struct node *pointer = head;
     while (pointer->next != NULL)
     {
         pointer = pointer->next;
@@ -76,8 +81,8 @@ void reverse_traverse()
 
 void insert_at_begning()
 {
-    pointer = head;
-    struct node *ptr = (struct node *)malloc(sizeof(struct node *));
+    struct node *pointer = head;
+    struct node *ptr = new struct node();
     cout << "enter data : ";
     cin >> ptr->data;
 
@@ -97,7 +102,7 @@ void insert_at_begning()
 
 void insert_at_end()
 {
-    pointer = head;
+    struct node *pointer = head;
     if (pointer == NULL)
     {
         return;
@@ -108,7 +113,7 @@ void insert_at_end()
         {
             pointer = pointer->next;
         }
-        struct node *ptr = (struct node *)malloc(sizeof(struct node *));
+        struct node *ptr = new struct node();
         cin >> ptr->data;
         pointer->next = ptr;
         ptr->prev = pointer;
@@ -119,13 +124,14 @@ void insert_at_end()
 
 void insert_at_position()
 {
-    struct node *ptr = (struct node *)malloc(sizeof(struct node *));
+    struct node *ptr = new struct node();
     int position;
     cout << "position of insertion : ";
     cin >> position;
     cout << "enter data : ";
     cin >> ptr->data;
 
+    struct node *pointer = head;
     if (pointer == NULL)
     {
         return;
@@ -161,7 +167,7 @@ void deletion_at_begning()
     }
     else
     {
-        pointer = head;
+        struct node *pointer = head;
         head = head->next;
         head->prev = NULL;
         free(pointer);
@@ -171,6 +177,7 @@ void deletion_at_begning()
 
 void deletion_at_end()
 {
+    struct node *pointer = head;
     if (pointer = NULL)
     {
         return;
@@ -181,7 +188,7 @@ void deletion_at_end()
         {
             pointer = pointer->next;
         }
-        temp = pointer->next;
+        struct node *temp = pointer->next;
         pointer->next = NULL;
         free(temp);
     }
@@ -193,7 +200,7 @@ void deletion_at_specific_position()
     int position;
     cout << "position of insertion : ";
     cin >> position;
-
+    struct node *pointer = head;
     if (pointer == NULL)
     {
         return;
@@ -211,7 +218,7 @@ void deletion_at_specific_position()
                 pointer = pointer->next;
                 position--;
             }
-            temp = pointer->next;
+            struct node *temp = pointer->next;
             pointer->next = pointer->next->next;
             free(temp);
             return;
@@ -222,7 +229,7 @@ void deletion_at_specific_position()
 void search()
 {
     int position = 1;
-    pointer = head;
+    struct node *pointer = head;
     int number;
     cin >> number;
 
