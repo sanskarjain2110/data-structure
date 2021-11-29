@@ -10,17 +10,17 @@ struct node
     struct node *next;
     struct node *prev;
 };
-struct node *head, *pointer = head, *temp;
+struct node *head = NULL;
 
 void create_link_list()
 {
-    pointer = head;
     int nodeNum;
-
     cout << "enter number of nodes to create : ";
     cin >> nodeNum;
 
-    struct node *ptr = (struct node *)malloc(sizeof(struct node *));
+    struct node *ptr = new struct node();
+    cout << "data : ";
+    cin >> ptr->data;
     if (ptr == NULL)
     {
         cout << "Node not allocated" << endl;
@@ -28,35 +28,40 @@ void create_link_list()
     }
     else
     {
-
-        cout << "data : ";
-        cin >> ptr->data;
-
         head = ptr;
         ptr->next = NULL;
         ptr->prev = NULL;
+        struct node *pointer = head;
 
-        pointer = head;
-
-        for (int i = 2; i <= nodeNum; i++)
+        while (nodeNum > 1)
         {
-            struct node *ptr = (struct node *)malloc(sizeof(struct node *));
+            struct node *ptr = new struct node();
             cout << "data : ";
             cin >> ptr->data;
+            if (ptr == NULL)
+            {
+                cout << "Node not allocated" << endl;
+                return;
+            }
+            else
+            {
 
-            pointer->next = ptr;
-            ptr->prev = pointer;
-            ptr->next = NULL;
+                pointer->next = ptr;
+                ptr->prev = pointer;
+                ptr->next = NULL;
 
-            pointer = pointer->next;
+                pointer = ptr;
+                nodeNum--;
+            }
         }
+        cout << "list created" << endl;
         return;
     }
 }
 
 void traverse()
 {
-    pointer = head;
+    struct node *pointer = head;
     for (; pointer != NULL; pointer = pointer->next)
     {
         cout << pointer->data << " ";
@@ -66,23 +71,26 @@ void traverse()
 
 void reverse_traverse()
 {
-    pointer = head;
+    struct node *pointer = head;
     while (pointer->next != NULL)
     {
         pointer = pointer->next;
     }
-    traverse();
+    for (; pointer != NULL; pointer = pointer->prev)
+    {
+        cout << pointer->data << " ";
+    }
+    cout << endl;
 }
 
 void insert_at_begning()
 {
-    pointer = head;
-    struct node *ptr = (struct node *)malloc(sizeof(struct node *));
+    struct node *ptr = new struct node();
     cout << "enter data : ";
     cin >> ptr->data;
-
-    if (pointer == NULL)
+    if (ptr == NULL)
     {
+        cout << "Node not allocated" << endl;
         return;
     }
     else
@@ -90,63 +98,100 @@ void insert_at_begning()
         ptr->next = head;
         ptr->prev = NULL;
         head = ptr;
-    }
 
-    return;
+        cout << "node inserted" << endl;
+        return;
+    }
 }
 
 void insert_at_end()
 {
-    pointer = head;
-    if (pointer == NULL)
+    if (head == NULL)
     {
+        insert_at_begning();
         return;
     }
     else
     {
+        struct node *pointer = head;
         while (pointer->next != NULL)
         {
             pointer = pointer->next;
         }
-        struct node *ptr = (struct node *)malloc(sizeof(struct node *));
+
+        struct node *ptr = new struct node();
+        cout << "enter data : ";
         cin >> ptr->data;
-        pointer->next = ptr;
-        ptr->prev = pointer;
-        ptr->next = NULL;
+        if (ptr == NULL)
+        {
+            cout << "Node not allocated" << endl;
+            return;
+        }
+        else
+        {
+            pointer->next = ptr;
+            ptr->prev = pointer;
+            ptr->next = NULL;
+
+            cout << "node inserted" << endl;
+            return;
+        }
     }
-    return;
 }
 
 void insert_at_position()
 {
-    struct node *ptr = (struct node *)malloc(sizeof(struct node *));
     int position;
     cout << "position of insertion : ";
     cin >> position;
-    cout << "enter data : ";
-    cin >> ptr->data;
 
-    if (pointer == NULL)
+    struct node *ptr = new struct node();
+    if (ptr == NULL)
     {
+        cout << "Node not allocated" << endl;
         return;
     }
     else
     {
         if (head == NULL)
         {
-            return;
+            if (position == 1)
+            {
+                insert_at_begning();
+                return;
+            }
+            else
+            {
+                cout << "list is empty" << endl;
+            }
         }
         else
         {
+            cout << "enter data : ";
+            cin >> ptr->data;
+
+            struct node *pointer = head;
+
             while (position > 2)
             {
-                pointer = pointer->next;
-                position--;
+                if (pointer == NULL)
+                {
+                    cout << "invalid position" << endl;
+                    return;
+                }
+                else
+                {
+                    pointer = pointer->next;
+                    position--;
+                }
             }
+
             ptr->prev = pointer;
             (pointer->next)->prev = ptr;
             ptr->next = pointer->next;
             pointer->next = ptr;
+
+            cout << "node inserted" << endl;
             return;
         }
     }
@@ -154,95 +199,147 @@ void insert_at_position()
 
 void deletion_at_begning()
 {
-
     if (head == NULL)
     {
+        cout << "list is empty" << endl;
         return;
     }
     else
     {
-        pointer = head;
+        struct node *pointer = head;
         head = head->next;
         head->prev = NULL;
         free(pointer);
+
+        cout << "node deleted" << endl;
         return;
     }
 }
 
 void deletion_at_end()
 {
-    if (pointer = NULL)
+    if (head == NULL)
     {
+        cout << "list is empty" << endl;
         return;
     }
     else
     {
+        struct node *pointer = head;
         while ((pointer->next)->next != NULL)
         {
             pointer = pointer->next;
         }
-        temp = pointer->next;
+
+        struct node *temp = pointer->next;
         pointer->next = NULL;
         free(temp);
+
+        cout << "node deleted" << endl;
+        return;
     }
 }
 
-// solve by your brain
 void deletion_at_specific_position()
 {
     int position;
     cout << "position of insertion : ";
     cin >> position;
 
-    if (pointer == NULL)
+    if (head == NULL)
     {
+        cout << "list is empty" << endl;
         return;
     }
     else
     {
-        if (head == NULL)
+        struct node *pointer = head;
+        while (position > 2)
         {
-            return;
-        }
-        else
-        {
-            while (position > 2)
+            if (pointer->next == NULL)
+            {
+                cout << "invalid position" << endl;
+                return;
+            }
+            else
             {
                 pointer = pointer->next;
                 position--;
             }
-            temp = pointer->next;
-            pointer->next = pointer->next->next;
-            free(temp);
-            return;
         }
+
+        struct node *temp = pointer->next;
+        pointer->next = pointer->next->next;
+        free(temp);
+
+        cout << "node deleted" << endl;
+        return;
     }
 }
 
 void search()
 {
     int position = 1;
-    pointer = head;
+
     int number;
+    cout << "number to search : ";
     cin >> number;
 
-    if (pointer == NULL)
+    if (head == NULL)
     {
+        cout << "list is empty" << endl;
         return;
     }
     else
     {
-        while (pointer->next != NULL)
+        int key = 0;
+
+        struct node *pointer = head;
+        while (pointer != NULL)
         {
             if (pointer->data == number)
             {
                 cout << number << " is present at " << position << " node" << endl;
-                return;
+                key = 1;
+                break;
             }
+            else
+            {
+                key = 0;
+            }
+            position++;
+            pointer = pointer->next;
         }
-        cout << number << " is not present" << endl;
+        if (key == 0)
+        {
+            cout << number << " is not present" << endl;
+        }
         return;
     }
+}
+
+// sorting through the bubble sort
+void sort()
+{
+    struct node *mp;
+    struct node *pointer = head;
+    while (pointer->next != NULL)
+    {
+        mp = pointer->next;
+        while (mp != NULL)
+        {
+            if (mp->data < pointer->data)
+            {
+                int temp = pointer->data;
+                pointer->data = mp->data;
+                mp->data = temp;
+            }
+            mp = mp->next;
+        }
+        pointer = pointer->next;
+    }
+    cout << "shorted list : ";
+    traverse();
 }
 
 void cases()
@@ -284,6 +381,9 @@ void cases()
         search();
         break;
     case 11:
+        sort();
+        break;
+    case 12:
         exit(0);
     default:
         cout << "invalid input!!!" << endl;
@@ -307,10 +407,8 @@ int main()
          << "8.deletion at end" << endl
          << "9.deletion at any position" << endl
          << "10.search at any number" << endl
-         << "11.exit" << endl;
+         << "11.sort the list" << endl
+         << "12.exit" << endl;
 
     cases();
-
-    // create_link_list();
-    // cout << pointer->next->prev->data;
 }
