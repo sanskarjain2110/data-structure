@@ -76,18 +76,21 @@ void reverse_traverse()
     {
         pointer = pointer->next;
     }
-    traverse();
+    for (; pointer != NULL; pointer = pointer->prev)
+    {
+        cout << pointer->data << " ";
+    }
+    cout << endl;
 }
 
 void insert_at_begning()
 {
-    struct node *pointer = head;
     struct node *ptr = new struct node();
     cout << "enter data : ";
     cin >> ptr->data;
-
-    if (pointer == NULL)
+    if (ptr == NULL)
     {
+        cout << "Node not allocated" << endl;
         return;
     }
     else
@@ -95,64 +98,100 @@ void insert_at_begning()
         ptr->next = head;
         ptr->prev = NULL;
         head = ptr;
-    }
 
-    return;
+        cout << "node inserted" << endl;
+        return;
+    }
 }
 
 void insert_at_end()
 {
-    struct node *pointer = head;
-    if (pointer == NULL)
+    if (head == NULL)
     {
+        insert_at_begning();
         return;
     }
     else
     {
+        struct node *pointer = head;
         while (pointer->next != NULL)
         {
             pointer = pointer->next;
         }
+
         struct node *ptr = new struct node();
+        cout << "enter data : ";
         cin >> ptr->data;
-        pointer->next = ptr;
-        ptr->prev = pointer;
-        ptr->next = NULL;
+        if (ptr == NULL)
+        {
+            cout << "Node not allocated" << endl;
+            return;
+        }
+        else
+        {
+            pointer->next = ptr;
+            ptr->prev = pointer;
+            ptr->next = NULL;
+
+            cout << "node inserted" << endl;
+            return;
+        }
     }
-    return;
 }
 
 void insert_at_position()
 {
-    struct node *ptr = new struct node();
     int position;
     cout << "position of insertion : ";
     cin >> position;
-    cout << "enter data : ";
-    cin >> ptr->data;
 
-    struct node *pointer = head;
-    if (pointer == NULL)
+    struct node *ptr = new struct node();
+    if (ptr == NULL)
     {
+        cout << "Node not allocated" << endl;
         return;
     }
     else
     {
         if (head == NULL)
         {
-            return;
+            if (position == 1)
+            {
+                insert_at_begning();
+                return;
+            }
+            else
+            {
+                cout << "list is empty" << endl;
+            }
         }
         else
         {
+            cout << "enter data : ";
+            cin >> ptr->data;
+
+            struct node *pointer = head;
+
             while (position > 2)
             {
-                pointer = pointer->next;
-                position--;
+                if (pointer == NULL)
+                {
+                    cout << "invalid position" << endl;
+                    return;
+                }
+                else
+                {
+                    pointer = pointer->next;
+                    position--;
+                }
             }
+
             ptr->prev = pointer;
             (pointer->next)->prev = ptr;
             ptr->next = pointer->next;
             pointer->next = ptr;
+
+            cout << "node inserted" << endl;
             return;
         }
     }
@@ -317,7 +356,4 @@ int main()
          << "11.exit" << endl;
 
     cases();
-
-    // create_link_list();
-    // cout << pointer->next->prev->data;
 }
