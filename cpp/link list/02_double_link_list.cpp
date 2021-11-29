@@ -310,7 +310,4 @@ int main()
          << "11.exit" << endl;
 
     cases();
-
-    // create_link_list();
-    // cout << pointer->next->prev->data;
 }
