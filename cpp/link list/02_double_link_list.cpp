@@ -199,9 +199,9 @@ void insert_at_position()
 
 void deletion_at_begning()
 {
-
     if (head == NULL)
     {
+        cout << "list is empty" << endl;
         return;
     }
     else
@@ -210,85 +210,136 @@ void deletion_at_begning()
         head = head->next;
         head->prev = NULL;
         free(pointer);
+
+        cout << "node deleted" << endl;
         return;
     }
 }
 
 void deletion_at_end()
 {
-    struct node *pointer = head;
-    if (pointer = NULL)
+    if (head == NULL)
     {
+        cout << "list is empty" << endl;
         return;
     }
     else
     {
+        struct node *pointer = head;
         while ((pointer->next)->next != NULL)
         {
             pointer = pointer->next;
         }
+
         struct node *temp = pointer->next;
         pointer->next = NULL;
         free(temp);
+
+        cout << "node deleted" << endl;
+        return;
     }
 }
 
-// solve by your brain
 void deletion_at_specific_position()
 {
     int position;
     cout << "position of insertion : ";
     cin >> position;
-    struct node *pointer = head;
-    if (pointer == NULL)
+
+    if (head == NULL)
     {
+        cout << "list is empty" << endl;
         return;
     }
     else
     {
-        if (head == NULL)
+        struct node *pointer = head;
+        while (position > 2)
         {
-            return;
-        }
-        else
-        {
-            while (position > 2)
+            if (pointer->next == NULL)
+            {
+                cout << "invalid position" << endl;
+                return;
+            }
+            else
             {
                 pointer = pointer->next;
                 position--;
             }
-            struct node *temp = pointer->next;
-            pointer->next = pointer->next->next;
-            free(temp);
-            return;
         }
+
+        struct node *temp = pointer->next;
+        pointer->next = pointer->next->next;
+        free(temp);
+
+        cout << "node deleted" << endl;
+        return;
     }
 }
 
 void search()
 {
     int position = 1;
-    struct node *pointer = head;
+
     int number;
+    cout << "number to search : ";
     cin >> number;
 
-    if (pointer == NULL)
+    if (head == NULL)
     {
+        cout << "list is empty" << endl;
         return;
     }
     else
     {
-        while (pointer->next != NULL)
+        int key = 0;
+
+        struct node *pointer = head;
+        while (pointer != NULL)
         {
             if (pointer->data == number)
             {
                 cout << number << " is present at " << position << " node" << endl;
-                return;
+                key = 1;
+                break;
             }
+            else
+            {
+                key = 0;
+            }
+            position++;
+            pointer = pointer->next;
         }
-        cout << number << " is not present" << endl;
+        if (key == 0)
+        {
+            cout << number << " is not present" << endl;
+        }
         return;
     }
+}
+
+// sorting through the bubble sort
+void sort()
+{
+    struct node *mp;
+    struct node *pointer = head;
+    while (pointer->next != NULL)
+    {
+        mp = pointer->next;
+        while (mp != NULL)
+        {
+            if (mp->data < pointer->data)
+            {
+                int temp = pointer->data;
+                pointer->data = mp->data;
+                mp->data = temp;
+            }
+            mp = mp->next;
+        }
+        pointer = pointer->next;
+    }
+    cout << "shorted list : ";
+    traverse();
 }
 
 void cases()
@@ -330,6 +381,9 @@ void cases()
         search();
         break;
     case 11:
+        sort();
+        break;
+    case 12:
         exit(0);
     default:
         cout << "invalid input!!!" << endl;
@@ -353,7 +407,8 @@ int main()
          << "8.deletion at end" << endl
          << "9.deletion at any position" << endl
          << "10.search at any number" << endl
-         << "11.exit" << endl;
+         << "11.sort the list" << endl
+         << "12.exit" << endl;
 
     cases();
 }
