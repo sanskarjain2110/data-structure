@@ -40,7 +40,7 @@ void create_link_list()
             struct node *ptr = (struct node *)malloc(sizeof(struct node *));
             cout << "data : ";
             cin >> ptr->data;
-            
+
             pointer->next = ptr;
             ptr->next = NULL;
 
@@ -123,12 +123,12 @@ void insert_at_position()
 {
     struct node *ptr = (struct node *)malloc(sizeof(struct node *));
     int position;
-    cout << "position of insertion : ";
+    cout << "enter position afteer which insertion took place : ";
     cin >> position;
     cout << "enter data : ";
     cin >> ptr->data;
 
-    if (pointer == NULL)
+    if (ptr == NULL)
     {
         return;
     }
@@ -140,6 +140,7 @@ void insert_at_position()
         }
         else
         {
+            pointer = head;
             while (position > 2)
             {
                 pointer = pointer->next;
@@ -152,7 +153,6 @@ void insert_at_position()
     }
 }
 
-//error
 void deletion_at_begning()
 {
     if (head == NULL)
@@ -161,16 +161,17 @@ void deletion_at_begning()
     }
     else
     {
-        pointer = head;
+        struct node *ptr = head;
         head = head->next;
-        free(pointer);
+        free(ptr);
         return;
     }
 }
 
 void deletion_at_end()
 {
-    if (pointer = NULL)
+    pointer = head;
+    if (pointer == NULL)
     {
         return;
     }
@@ -180,7 +181,7 @@ void deletion_at_end()
         {
             pointer = pointer->next;
         }
-        temp = pointer->next;
+        struct node *temp = pointer->next;
         pointer->next = NULL;
         free(temp);
     }
@@ -188,6 +189,7 @@ void deletion_at_end()
 
 void deletion_at_specific_position()
 {
+    pointer = head;
     int position;
     cout << "position of insertion : ";
     cin >> position;
@@ -209,7 +211,7 @@ void deletion_at_specific_position()
                 pointer = pointer->next;
                 position--;
             }
-            temp = pointer->next;
+            struct node *temp = pointer->next;
             pointer->next = pointer->next->next;
             free(temp);
             return;
@@ -255,7 +257,7 @@ void search()
     }
 }
 
-// sorting through the bubble sort 
+// sorting through the bubble sort
 void sort()
 {
     struct node *mp;
@@ -276,7 +278,8 @@ void sort()
         }
         pointer = pointer->next;
     }
-    cout << "list shorted" << endl;
+    cout << "shorted list : ";
+    traverse();
 }
 
 void cases()
