@@ -1,18 +1,20 @@
 #include <iostream>
 using namespace std;
 
-void bubble(int a[], int n)
+void selection_sort(int a[], int n)
 {
-
+    int min;
     for (int i = 0; i < n; i++)
     {
-        for (int j = 0; j < n; j++)
+        min = i;
+        for (int j = i + 1; j < n; j++)
         {
-            if (a[i] < a[j])
+            if (a[i] > a[j])
             {
-                swap(a[i], a[j]);
+                min = j;
             }
         }
+        swap(a[min], a[i]);
     }
 }
 
@@ -28,12 +30,11 @@ int main()
         cin >> arr[i];
     }
 
-    bubble(arr,size);
-    cout<<"display : ";
+    selection_sort(arr, size);
+    cout << "display : ";
 
     for (int i = 0; i < size; i++)
     {
-        cout<< arr[i] <<" ";
+        cout << arr[i] << " ";
     }
-
 }
