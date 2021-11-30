@@ -4,10 +4,8 @@ this file contains data-stracture and algorithms using various languages
 
 
 right now this repository holds folowing languages :
-#    1.C++
+#C++
 
-    
-    in C++ :
         1.Arrays
         2.Linked list
         3.Stack
