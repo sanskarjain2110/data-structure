@@ -3,50 +3,59 @@
 #include <stdlib.h>
 using namespace std;
 
-struct node
+struct BstNode
 {
     int data;
-    struct node *left;
-    struct node *right;
+    struct BstNode *left;
+    struct BstNode *right;
 };
-struct node *root = NULL;
+struct BstNode *root = NULL;
 
 void create_tree()
 {
-    int nodeNum;
-    cout << "number of nodes : ";
-    cin >> nodeNum;
+    int BstNodeNum;
+    cout << "number of BstNodes : ";
+    cin >> BstNodeNum;
 
-    if (root == NULL)
+    struct BstNode *ptr = new BstNode();
+    if (ptr == NULL)
     {
-        struct node *ptr = new node();
+        cout << "error";
+        return;
+    }
+    else
+    {
         cout << "date : ";
         cin >> ptr->data;
         ptr->right = NULL;
         ptr->left = NULL;
-        ptr = root;
+        root= ptr;
     }
 
-    for (int i = 1; i < nodeNum; i++)
+    struct BstNode *pointer = root;
+    for (int i = 1; i < BstNodeNum; i++)
     {
-        struct node *pointer = root;
-        struct node *ptr = new node();
-        
-        cout << "date : ";
-        cin >> ptr->data;
-        ptr->right = NULL;
-        ptr->left = NULL;
-
-        while (pointer->right != NULL || pointer->left != NULL)
+        struct BstNode *ptr = new BstNode();
+        if (ptr == NULL)
         {
-            if (pointer->data <= ptr->data)
-            {
-                pointer = pointer->left;
-            }
-            else if (pointer->data > ptr->data)
-            {
-                pointer = pointer->right;
-            }
+            cout << "error";
+            return;
+        }
+        else
+        {
+            cout << "date : ";
+            cin >> ptr->data;
+            ptr->right = NULL;
+            ptr->left = NULL;
+        }
+
+        while (pointer->data <= ptr->data && pointer->left != NULL)
+        {
+            pointer = pointer->left;
+        }
+        while (pointer->data > ptr->data && pointer->right != NULL)
+        {
+            pointer = pointer->right;
         }
 
         if (pointer->data <= ptr->data)
@@ -58,29 +67,33 @@ void create_tree()
             pointer->right = ptr;
         }
     }
-}
-
-void traverse()
-{
-    cout << "traverse : ";
-    if (root == NULL)
-    {
-        return;
-    }
-    else
-    {
-        cout << root->data << " ";
-        root = root->left;
-        traverse();
-        root = root->right;
-        traverse();
-    }
     return;
 }
 
+void cases()
+{
+    int input;
+    cout << "enter input : ";
+    cin >> input;
+
+    switch (input)
+    {
+    case 1:
+        create_tree();
+        break;
+    case 2:
+        exit(0);
+    default:
+        cout << "invalid input!!!" << endl;
+        cases();
+        break;
+    }
+    cases();
+    return;
+}
+
+
 int main()
 {
-    create_tree();
-    cout << root->data;
-    traverse();
+    cases();
 }
