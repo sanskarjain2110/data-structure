@@ -29,7 +29,7 @@ void create_tree()
         cin >> ptr->data;
         ptr->right = NULL;
         ptr->left = NULL;
-        root= ptr;
+        root = ptr;
     }
 
     struct BstNode *pointer = root;
@@ -92,8 +92,11 @@ void cases()
     return;
 }
 
-
 int main()
 {
+    cout << "enter number to perform task in list " << endl
+         << "1.create tree" << endl
+         << "12.exit" << endl;
+
     cases();
 }
