@@ -336,7 +336,7 @@ void cases()
 int main()
 {
     cout << "enter number to perform task in list " << endl
-         << "1.create node" << endl
+         << "1.create link list" << endl
          << "2.traverse the list" << endl
          << "3.reverse traverse the list" << endl
          << "4.insertion at begning" << endl
