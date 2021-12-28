@@ -49,22 +49,22 @@ void create_tree()
             ptr->left = NULL;
         }
 
-        while (pointer->data <= ptr->data && pointer->left != NULL)
-        {
-            pointer = pointer->left;
-        }
-        while (pointer->data > ptr->data && pointer->right != NULL)
+        while (pointer->data <= ptr->data && pointer->right != NULL)
         {
             pointer = pointer->right;
+        }
+        while (pointer->data > ptr->data && pointer->left != NULL)
+        {
+            pointer = pointer->left;
         }
 
         if (pointer->data <= ptr->data)
         {
-            pointer->left = ptr;
+            pointer->right = ptr;
         }
         else if (pointer->data >= ptr->data)
         {
-            pointer->right = ptr;
+            pointer->left = ptr;
         }
     }
     return;
@@ -72,40 +72,31 @@ void create_tree()
 
 void insertion()
 {
-    struct Node *ptr = new Node();
+    return;
+}
+
+void searching(Node *ptr, int key)
+{
     if (ptr == NULL)
     {
-        cout << "error";
+        cout << " element is not found" << endl;
         return;
     }
     else
     {
-        cout << "date : ";
-        cin >> ptr->data;
-        ptr->right = NULL;
-        ptr->left = NULL;
+        if (ptr->data > key)
+        {
+            searching(ptr->left, key);
+        }
+        else if (ptr->data < key)
+        {
+            searching(ptr->right, key);
+        }
+        else
+        {
+            cout << "element is found" << endl;
+        }
     }
-
-    struct Node *pointer = root;
-    while (pointer->data <= ptr->data && pointer->left != NULL)
-    {
-        pointer = pointer->left;
-    }
-    while (pointer->data > ptr->data && pointer->right != NULL)
-    {
-        pointer = pointer->right;
-    }
-
-    if (pointer->data <= ptr->data)
-    {
-        pointer->left = ptr;
-    }
-    else if (pointer->data >= ptr->data)
-    {
-        pointer->right = ptr;
-    }
-
-    return;
 }
 
 void pre_order_treversing(Node *ptr)
@@ -114,29 +105,62 @@ void pre_order_treversing(Node *ptr)
     {
         return;
     }
-    cout << ptr->data << " ";
-    pre_order_treversing(ptr->left);
-    pre_order_treversing(ptr->right);
+    else
+    {
+        cout << ptr->data << " ";
+        pre_order_treversing(ptr->left);
+        pre_order_treversing(ptr->right);
+    }
+}
+
+void in_order_treversing(Node *ptr)
+{
+    if (ptr == NULL)
+    {
+        return;
+    }
+    else
+    {
+        in_order_treversing(ptr->left);
+        cout << ptr->data << " ";
+        in_order_treversing(ptr->right);
+    }
 }
 
 void cases()
 {
     int input;
-    cout << "enter input : ";
+    cout << endl
+         << "enter input : ";
     cin >> input;
+
+    Node *ptr = root;
 
     switch (input)
     {
     case 1:
         create_tree();
         break;
+    case 8:
+        create_tree2();
+        break;
     case 2:
-        pre_order_treversing(root);
+        insertion();
+        // under maintainance
         break;
     case 3:
-        insertion();
+        int key;
+        cout << "enter value : ";
+        cin >> key;
+        searching(ptr, key);
         break;
-    case 12:
+    case 4:
+        pre_order_treversing(ptr);
+        break;
+    case 5:
+        in_order_treversing(ptr);
+        break;
+    case 0:
         exit(0);
     default:
         cout << "invalid input!!!" << endl;
@@ -151,9 +175,11 @@ int main()
 {
     cout << "enter number to perform task in list " << endl
          << "1.create binary search tree" << endl
-         << "2.Pre Order Treversing" << endl
-         << "3.insertion" << endl
-         << "12.exit" << endl;
+         << "2.insertion" << endl
+         << "3.search" << endl
+         << "4.Pre Order Treversing" << endl
+         << "5.In Order Treversing" << endl
+         << "0.exit" << endl;
 
     cases();
 }

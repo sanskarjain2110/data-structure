@@ -5,6 +5,11 @@
         "deque": "cpp",
         "string": "cpp",
         "vector": "cpp",
-        "string_view": "cpp"
+        "string_view": "cpp",
+        "forward_list": "cpp",
+        "list": "cpp",
+        "iterator": "cpp",
+        "scoped_allocator": "cpp",
+        "regex": "cpp"
     }
 }
