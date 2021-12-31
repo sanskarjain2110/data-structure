@@ -11,6 +11,60 @@ struct Node
 };
 struct Node *root = NULL;
 
+Node *insertion(Node *pointer)
+{
+    struct Node *point = pointer;
+    struct Node *ptr = new Node();
+    if (ptr == NULL)
+    {
+        cout << "error";
+        return point;
+    }
+    else
+    {
+        cout << "date : ";
+        cin >> ptr->data;
+        ptr->right = NULL;
+        ptr->left = NULL;
+    }
+    while (pointer->right != NULL || pointer->left != NULL)
+    {
+        if (pointer->data <= ptr->data)
+        {
+            if (pointer->right != NULL)
+            {
+                pointer = pointer->right;
+            }
+            else
+            {
+                break;
+            }
+        }
+        else
+        {
+            if (pointer->left != NULL)
+            {
+                pointer = pointer->left;
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+
+    if (pointer->data <= ptr->data)
+    {
+        pointer->right = ptr;
+    }
+    else if (pointer->data >= ptr->data)
+    {
+        pointer->left = ptr;
+    }
+
+    return point;
+}
+
 void create_tree()
 {
     int NodeNum;
@@ -35,44 +89,8 @@ void create_tree()
     struct Node *pointer = root;
     for (int i = 1; i < NodeNum; i++)
     {
-        struct Node *ptr = new Node();
-        if (ptr == NULL)
-        {
-            cout << "error";
-            return;
-        }
-        else
-        {
-            cout << "date : ";
-            cin >> ptr->data;
-            ptr->right = NULL;
-            ptr->left = NULL;
-        }
-
-        while (pointer->data <= ptr->data && pointer->right != NULL)
-        {
-            pointer = pointer->right;
-        }
-        while (pointer->data > ptr->data && pointer->left != NULL)
-        {
-            pointer = pointer->left;
-        }
-
-        if (pointer->data <= ptr->data)
-        {
-            pointer->right = ptr;
-        }
-        else if (pointer->data >= ptr->data)
-        {
-            pointer->left = ptr;
-        }
+        root = insertion(root);
     }
-    return;
-}
-
-void insertion()
-{
-    return;
 }
 
 void searching(Node *ptr, int key)
@@ -127,6 +145,20 @@ void in_order_treversing(Node *ptr)
     }
 }
 
+void post_order_treversing(Node *ptr)
+{
+    if (ptr == NULL)
+    {
+        return;
+    }
+    else
+    {
+        in_order_treversing(ptr->left);
+        cout << ptr->data << " ";
+        in_order_treversing(ptr->right);
+    }
+}
+
 void cases()
 {
     int input;
@@ -141,12 +173,8 @@ void cases()
     case 1:
         create_tree();
         break;
-    case 8:
-        create_tree2();
-        break;
     case 2:
-        insertion();
-        // under maintainance
+        root = insertion(root);
         break;
     case 3:
         int key;
@@ -159,6 +187,9 @@ void cases()
         break;
     case 5:
         in_order_treversing(ptr);
+        break;
+    case 6:
+        post_order_treversing(ptr);
         break;
     case 0:
         exit(0);

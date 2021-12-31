@@ -10,6 +10,7 @@
         "list": "cpp",
         "iterator": "cpp",
         "scoped_allocator": "cpp",
-        "regex": "cpp"
+        "regex": "cpp",
+        "charconv": "cpp"
     }
 }
