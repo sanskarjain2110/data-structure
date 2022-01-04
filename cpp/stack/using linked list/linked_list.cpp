@@ -1,36 +1,49 @@
 #include <iostream>
 using namespace std;
 
-int arr[1000];
-static int top = -1;
+struct node
+{
+    int data;
+    node *next;
+};
+node *top = NULL;
 
 void peek()
 {
-    if (top < 0)
+    if (top == NULL)
     {
         cout << "empty stack " << endl;
     }
     else
     {
-        cout << arr[top] << " is on top of stack " << endl;
+        cout << top->data << " is on top of stack " << endl;
     }
 }
 
 void push()
 {
-    if (top == 1000)
+    node *new_node = new node();
+    cout << "enter number : ";
+    cin >> new_node->data;
+    new_node->next = NULL;
+
+    if (new_node == NULL)
     {
-        cout << "stack is full" << endl;
+        cout << "number not inserted" << endl
+             << "due to some error" << endl;
         return;
     }
     else
     {
-        int num;
-        cout << "enter number" << endl;
-        cin >> num;
-        top += num;
-        arr[top] = num;
-
+        if (top == NULL)
+        {
+            top = new_node;
+        }
+        else
+        {
+            new_node->next = top;
+            top = new_node;
+        }
         cout << "number inserted" << endl;
         return;
     }
@@ -38,14 +51,16 @@ void push()
 
 void pop()
 {
-    if (top < 0)
+    if (top == NULL)
     {
         cout << "empty stack" << endl;
         return;
     }
     else
     {
-        top -= 1;
+        node *temp = top;
+        top = top->next;
+        free(temp);
         cout << "number poped" << endl;
         return;
     }
