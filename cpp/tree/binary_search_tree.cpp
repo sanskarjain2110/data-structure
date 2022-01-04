@@ -113,8 +113,73 @@ void searching(Node *ptr, int key)
         else
         {
             cout << "element is found" << endl;
+            return;
         }
     }
+}
+
+Node *findmin(Node *ptr)
+{
+    if (ptr == NULL)
+    {
+        Node *point = new Node();
+        point->data = -101;
+        return point;
+    }
+    else
+    {
+        while (ptr->left != NULL)
+        {
+            ptr = ptr->left;
+        }
+        return ptr;
+    }
+}
+
+Node *deletion(Node *pointer, int item)
+{
+    if (pointer == NULL)
+    {
+        cout << "not found in tree";
+    }
+    else if (item < pointer->data)
+    {
+        pointer->left = deletion(pointer->left, item);
+    }
+    else if (item > pointer->data)
+    {
+        pointer->right = deletion(pointer->right, item);
+    }
+    else
+    {
+        if (pointer->left == NULL && pointer->right == NULL)
+        {
+            delete pointer;
+            pointer = NULL;
+        }
+        else
+        {
+            if (pointer->right == NULL)
+            {
+                Node *temp = pointer;
+                pointer = pointer->left;
+                delete temp;
+            }
+            else if (pointer->left == NULL)
+            {
+                Node *temp = pointer;
+                pointer = pointer->right;
+                delete temp;
+            }
+            else
+            {
+                Node *temp = findmin(pointer->right);
+                pointer->data = temp->data;
+                pointer->right = deletion(pointer->right, temp->data);
+            }
+        }
+    }
+    return pointer;
 }
 
 void pre_order_treversing(Node *ptr)
@@ -154,8 +219,8 @@ void post_order_treversing(Node *ptr)
     else
     {
         in_order_treversing(ptr->left);
-        cout << ptr->data << " ";
         in_order_treversing(ptr->right);
+        cout << ptr->data << " ";
     }
 }
 
@@ -191,6 +256,14 @@ void cases()
     case 6:
         post_order_treversing(ptr);
         break;
+    case 7:
+        cout << "enter value : ";
+        cin >> key;
+        root = deletion(root, key);
+        break;
+    case 8:
+        cout << findmin(ptr)->data << endl;
+        break;
     case 0:
         exit(0);
     default:
@@ -210,6 +283,9 @@ int main()
          << "3.search" << endl
          << "4.Pre Order Treversing" << endl
          << "5.In Order Treversing" << endl
+         << "6.Post Order Treversing" << endl
+         << "7.Deletion" << endl
+         << "8.find min" << endl
          << "0.exit" << endl;
 
     cases();
