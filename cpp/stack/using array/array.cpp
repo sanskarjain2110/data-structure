@@ -38,17 +38,14 @@ void push()
 
 void pop()
 {
-    if (top < 0)
-    {
-        cout << "empty stack" << endl;
-        return;
-    }
-    else
+    if (top >= 0)
     {
         top -= 1;
         cout << "number poped" << endl;
         return;
     }
+    cout << "empty stack" << endl;
+    return;
 }
 
 void cases()
