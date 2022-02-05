@@ -1,15 +1,35 @@
-#     6.insertion at any position
-#     7.deletion at begning
+                           #     7.deletion at begning
 #     8.deletion at end
 #     9.deletion at any position
 a = []
 
 
 def insertion_at_begning():
-    value = input("Enter to insert : ")
+    value = input("Enter value to insert : ")
     global a
     a = list[value] + a[:]
-    
+
+    if value in a:
+        print("inserted")
+    else:
+        print("not inserted")
+
+
+def insertion_at_any_point():
+    value = input("Enter value to insert : ")
+    position = int(input("Enter position : "))
+    global a
+    a = a[:position] + list[value] + a[position:]
+
+    if value in a:
+        print("inserted")
+    else:
+        print("not inserted")
+
+
+def insertion_at_end():
+    value = input("Enter value to insert : ")
+    a.append(value)
     if value in a:
         print("inserted")
     else:
@@ -25,15 +45,6 @@ def search():
             return
 
     print(key, "is not present.")
-
-
-def insertion_at_end():
-    value = input("Enter to insert : ")
-    a.append(value)
-    if value in a:
-        print("inserted")
-    else:
-        print("not inserted")
 
 
 def traverse():
@@ -75,13 +86,12 @@ def choice():
     elif case == 5:
         insertion_at_end()
     elif case == 6:
-        # insertion_at_any_point()
-        pass
+        insertion_at_any_point()
     elif case == 10:
         search()
     elif case == 11:
         a.sort()
-        print ("array is sorted")
+        print("array is sorted")
     else:
         print("invalid input")
         choice()
