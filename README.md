@@ -1,23 +1,40 @@
-# Data-Structures And Aljgorithms
+# Data-Structures And Algorithms
 
-## Data-structure
+### Data-structure
 
-this file contains data-stracture and algorithms using various languages
+Orgamizarion of data in a systematic manner in Computer so that it can be use efficently
 
-right now this repository holds folowing languages :
+Mainly they are of type:
+
+* Array
+* Linked List
+* Stack
+* Queue
+* Tree
+* Graph
+* Hash Table
+
+### Algorithms
+
+A set of rules that must be followed when solving a particular problem.
+
+#### this file contains data structure and algorithms using various languages right now this repository holds the following languages :&#x20;
+
+* Cpp
+* Python
 
 ## C++
 
 ```
-    1.Arrays
-    2.Linked list
-    3.Stack
+    1. Arrays
+    2. Linked list
+    3. Stack
 
 
     in Arrays :
-        1. Insertion at begning of array
-        2. Insertion at end of array
-        3. Insertion at any position of array
+        1. Insertion at the beginning of an array
+        2. Insertion at the end of an array
+        3. Insertion at any position of an array
 
 
     in Linked list :

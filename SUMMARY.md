@@ -1,4 +1,11 @@
 # Table of contents
 
-* [Data-Structures And Aljgorithms](README.md)
-* [java](java/README.md)
+* [Data-Structures And Algorithms](README.md)
+
+## © Cpp
+
+* [Cpp](cpp/cpp.md)
+
+## 🐍 Python
+
+* [Page 1](python/page-1.md)
