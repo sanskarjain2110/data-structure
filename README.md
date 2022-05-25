@@ -1,22 +1,26 @@
-# data-structure
+# Data-Structures And Aljgorithms
+
+## Data-structure
 
 this file contains data-stracture and algorithms using various languages
 
-
 right now this repository holds folowing languages :
-# C++
 
-        1.Arrays
-        2.Linked list
-        3.Stack
+## C++
 
-
-        in Arrays :
-            1. Insertion at begning of array
-            2. Insertion at end of array
-            3. Insertion at any position of array
+```
+    1.Arrays
+    2.Linked list
+    3.Stack
 
 
-        in Linked list :
-            1. Derived code of Linear linked list
-            2. Derived code of Double linked list or both way linked list
+    in Arrays :
+        1. Insertion at begning of array
+        2. Insertion at end of array
+        3. Insertion at any position of array
+
+
+    in Linked list :
+        1. Derived code of Linear linked list
+        2. Derived code of Double linked list or both way linked list
+```
