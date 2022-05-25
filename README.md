@@ -20,8 +20,8 @@ A set of rules that must be followed when solving a particular problem.
 
 #### this file contains data structure and algorithms using various languages right now this repository holds the following languages :&#x20;
 
-* Cpp
-* Python
+* :snake: Python[Broken link](broken-reference "mention")
+* &#x20;Cpp[Broken link](broken-reference "mention")
 
 ## C++
 
