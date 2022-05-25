@@ -1,5 +1,7 @@
 # Data-Structures And Algorithms
 
+![](https://miro.medium.com/max/1838/1\*KpDOKMFAgDWaGTQHL0r70g.png)
+
 ### Data-structure
 
 Orgamizarion of data in a systematic manner in Computer so that it can be use efficently
