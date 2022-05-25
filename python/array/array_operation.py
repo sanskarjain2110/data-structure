@@ -1,6 +1,5 @@
-                           #     7.deletion at begning
-#     8.deletion at end
-#     9.deletion at any position
+from operator import index
+
 a = []
 
 
@@ -87,11 +86,21 @@ def choice():
         insertion_at_end()
     elif case == 6:
         insertion_at_any_point()
+    elif case == 7:
+        a = a[1:]
+    elif case == 8:
+        a = a[:-1]
+    elif case == 9:
+        print("array :",a)
+        index = int(input("enter index : "))
+        del a[index]
+        print("item deleted")
+        print("new aray :",a)
     elif case == 10:
         search()
     elif case == 11:
         a.sort()
-        print("array is sorted")
+        print("array is sorted :", a)
     else:
         print("invalid input")
         choice()

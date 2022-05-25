@@ -3,4 +3,4 @@ class Node:
         self.right = None
         self.left = None
         self.data = val
-
+    

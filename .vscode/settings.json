@@ -12,5 +12,6 @@
         "scoped_allocator": "cpp",
         "regex": "cpp",
         "charconv": "cpp"
-    }
+    },
+    "maven.view": "hierarchical"
 }
