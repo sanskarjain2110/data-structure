@@ -8,4 +8,4 @@
 
 ## 🐍 Python
 
-* [Page 1](python/page-1.md)
+* [🐍 Page 1](python/page-1.md)
