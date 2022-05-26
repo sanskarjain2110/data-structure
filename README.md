@@ -1,6 +1,6 @@
 # Data-Structures And Algorithms
 
-![](https://miro.medium.com/max/1838/1\*KpDOKMFAgDWaGTQHL0r70g.png)
+![](https://miro.medium.com/max/1400/1\*2rKGJ6h1regwmfMcty3SLw.png)
 
 ### Data-structure
 
