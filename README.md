@@ -22,10 +22,11 @@ A set of rules that must be followed when solving a particular problem.
 
 #### this file contains data structure and algorithms using various languages right now this repository holds the following languages :&#x20;
 
-* [Python](python/page-1.md)
+* [Java](https://app.gitbook.com/s/2XlFHV0K8O9A0e8Y6ESw/\~/changes/kMABVUbp69tQacrBfqmy/java/java)
+* [Python](python/python.md)
 * &#x20;[Cpp](cpp/cpp.md)
 
-## C++
+
 
 ```
     1. Arrays

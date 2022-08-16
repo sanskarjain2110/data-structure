@@ -8,4 +8,8 @@
 
 ## 🐍 Python
 
-* [🐍 Page 1](python/page-1.md)
+* [Python](python/python.md)
+
+## ☕ JAVA
+
+* [Java](java/java.md)
